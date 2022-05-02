@@ -1,0 +1,32 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model User {
+  id         Int    @id @default(autoincrement())
+  first_name String @db.VarChar(90)
+  last_name  String @db.VarChar(90)
+  email      String @unique @db.VarChar(255)
+  pass       String @db.VarChar(255)
+  tasks      Task[]
+
+  @@map("users")
+}
+
+model Task {
+  id      Int     @id @default(autoincrement())
+  title   String  @unique @db.VarChar(60)
+  content String  @db.VarChar(255)
+  done    Boolean @default(false)
+  user    User    @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  @@map("tasks")
+}
