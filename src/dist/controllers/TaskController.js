@@ -16,20 +16,20 @@ const taskSchemas_1 = require("../models/validators/taskSchemas");
 const TaskRepository_1 = __importDefault(require("../repositories/TaskRepository"));
 class TaskController {
     constructor() {
-        this.getAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.GetAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const user = req.user;
             const repository = new TaskRepository_1.default(parseInt(user.sub));
-            const tasks = yield repository.findAll();
+            const tasks = yield repository.FindAll();
             res.json(tasks);
         });
-        this.getByid = (req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.GetByid = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const user = req.user;
             const repository = new TaskRepository_1.default(parseInt(user.sub));
-            const tasks = yield repository.findById(parseInt(id));
+            const tasks = yield repository.FindByid(parseInt(id));
             res.json(tasks);
         });
-        this.create = (req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.Create = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const tasks = req.body;
             try {
                 yield taskSchemas_1.CreateTaskSchema.validateAsync(tasks);
@@ -39,10 +39,10 @@ class TaskController {
             }
             const user = req.user;
             const repository = new TaskRepository_1.default(parseInt(user.sub));
-            const newTask = yield repository.create(tasks);
+            const newTask = yield repository.Create(tasks);
             res.json(newTask);
         });
-        this.update = (req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.Update = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const tasks = req.body;
             try {
@@ -53,7 +53,7 @@ class TaskController {
             }
             const user = req.user;
             const repository = new TaskRepository_1.default(parseInt(user.sub));
-            yield repository.update(parseInt(id), tasks);
+            yield repository.Update(parseInt(id), tasks);
             res.sendStatus(204);
         });
         this.delete = (req, res) => __awaiter(this, void 0, void 0, function* () {

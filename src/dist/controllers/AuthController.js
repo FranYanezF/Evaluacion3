@@ -27,7 +27,7 @@ class AuthController {
                 return;
             }
             const repository = new UserRepository_1.default();
-            const userFromDB = yield repository.findByEmail(credential.email);
+            const userFromDB = yield repository.FindByEmail(credential.email);
             if (!userFromDB || userFromDB.pass !== credential.pass) {
                 res.status(403).json({ message: "sin credenciales" });
                 return;
@@ -44,7 +44,7 @@ class AuthController {
                 res.status(400).json({ message: err.message });
             }
             const repository = new UserRepository_1.default();
-            yield repository.create(user);
+            yield repository.Create(user);
             res.sendStatus(201);
         });
     }

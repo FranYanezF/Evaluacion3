@@ -1,9 +1,9 @@
  interface BaseTaskDTO {
-    id?: number 
+    id: number 
     title: string
     content: string
     done : boolean 
-    user_id?: number | null
+    user_id: number 
 }
 
 export interface TaskDTO extends BaseTaskDTO {

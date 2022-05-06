@@ -1,7 +1,7 @@
 import { CreateUserSchema } from "../models/validators/taskSchemas"
 import { Request, Response } from "express"
 import userRepository from "../repositories/UserRepository"
-import { CreateUserDTO,UserDTO } from "../models/dto/UserDTO"
+import { CreateUserDTO } from "../models/dto/UserDTO"
 import { generateToken } from "../lib/jwt"
 
 export default class AuthController{
@@ -17,7 +17,7 @@ export default class AuthController{
         }
 
         const repository = new userRepository();
-        const userFromDB = await repository.FindByEmail(credential.email)
+        const userFromDB = await repository.findByEmail(credential.email)
 
         if(!userFromDB || userFromDB.pass !== credential.pass){
             res.status(403).json({message : "sin credenciales"})
@@ -37,7 +37,7 @@ export default class AuthController{
             res.status(400).json({message : err.message})
         }
         const repository = new userRepository()
-        await repository.Create(user)
+        await repository.create(user)
         res.sendStatus(201)
 
     }

@@ -22,17 +22,17 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-class UserRepository {
+class TaskRepository {
     constructor() {
-        this.findAll = () => __awaiter(this, void 0, void 0, function* () {
-            const user = yield prisma.user.findMany();
+        this.FindAll = () => __awaiter(this, void 0, void 0, function* () {
+            const user = yield prisma.task.findMany();
             const userWhithoutPass = user.map(user => {
                 const { pass } = user, userWhithoutPass = __rest(user, ["pass"]);
                 return userWhithoutPass;
             });
             return userWhithoutPass;
         });
-        this.findByid = (id) => __awaiter(this, void 0, void 0, function* () {
+        this.FindByid = (id) => __awaiter(this, void 0, void 0, function* () {
             const user = yield prisma.user.findUnique({
                 where: {
                     id,
@@ -43,7 +43,7 @@ class UserRepository {
             const { pass } = user, userWhithoutPass = __rest(user, ["pass"]);
             return userWhithoutPass;
         });
-        this.findByEmail = (email) => __awaiter(this, void 0, void 0, function* () {
+        this.FindByEmail = (email) => __awaiter(this, void 0, void 0, function* () {
             const user = yield prisma.user.findUnique({
                 where: {
                     email,
@@ -53,11 +53,18 @@ class UserRepository {
                 return;
             return user;
         });
-        this.create = (usuario) => __awaiter(this, void 0, void 0, function* () {
+        this.Create = (usuario) => __awaiter(this, void 0, void 0, function* () {
             const newUser = yield prisma.user.create({
                 data: Object.assign({}, usuario)
             });
             return newUser;
+        });
+        this.update = (id) => __awaiter(this, void 0, void 0, function* () {
+            yield prisma.user.update({
+                where: {
+                    id,
+                }
+            });
         });
         this.delete = (id) => __awaiter(this, void 0, void 0, function* () {
             yield prisma.user.delete({
@@ -68,4 +75,4 @@ class UserRepository {
         });
     }
 }
-exports.default = UserRepository;
+exports.default = TaskRepository;

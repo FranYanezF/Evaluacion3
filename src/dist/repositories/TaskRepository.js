@@ -13,7 +13,7 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 class TaskRepository {
     constructor(userid) {
-        this.findAll = () => __awaiter(this, void 0, void 0, function* () {
+        this.FindAll = () => __awaiter(this, void 0, void 0, function* () {
             const tasks = yield prisma.task.findMany({
                 where: {
                     user_id: this.user_id
@@ -21,7 +21,7 @@ class TaskRepository {
             });
             return tasks;
         });
-        this.findById = (id) => __awaiter(this, void 0, void 0, function* () {
+        this.FindByid = (id) => __awaiter(this, void 0, void 0, function* () {
             const tasks = yield prisma.task.findFirst({
                 where: {
                     id,
@@ -32,13 +32,13 @@ class TaskRepository {
                 return;
             return tasks;
         });
-        this.create = (task) => __awaiter(this, void 0, void 0, function* () {
+        this.Create = (task) => __awaiter(this, void 0, void 0, function* () {
             const newTask = yield prisma.task.create({
                 data: Object.assign({}, task)
             });
             return newTask;
         });
-        this.update = (id, task) => __awaiter(this, void 0, void 0, function* () {
+        this.Update = (id, task) => __awaiter(this, void 0, void 0, function* () {
             yield prisma.task.updateMany({
                 where: {
                     id,

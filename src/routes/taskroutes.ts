@@ -4,10 +4,10 @@ import TaskController from "../controllers/TaskController";
 const taskroutes = Router()
 const controller = new TaskController()
 
-taskroutes.get('/', controller.GetAll)
-taskroutes.get('/:id', controller.GetByid)
-taskroutes.post('/create', controller.Create)
-taskroutes.put('/:id', controller.Update)
+taskroutes.get('/', controller.getAll)
+taskroutes.get('/:id', controller.getByid)
+taskroutes.post('/create', controller.create)
+taskroutes.put('/:id', controller.update)
 taskroutes.delete('/:id', controller.delete)
 
 export default taskroutes

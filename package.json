@@ -18,9 +18,11 @@
     "@types/jsonwebtoken": "^8.5.8",
     "d-": "^0.0.1",
     "dotenv": "^16.0.0",
+    "error": "^10.4.0",
     "express": "^4.18.0",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
+    "lens": "^0.0.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {

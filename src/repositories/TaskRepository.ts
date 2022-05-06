@@ -10,7 +10,7 @@ export default class TaskRepository{
         this.user_id = userid
     }
 
-    public readonly FindAll = async () : Promise<TaskDTO[]> =>{
+    public readonly findAll = async () : Promise<TaskDTO[]> =>{
         const tasks: TaskDTO[] = await prisma.task.findMany({
             where: {
                 user_id : this.user_id
@@ -18,8 +18,8 @@ export default class TaskRepository{
         })
         return tasks
     }
-    public readonly FindByid = async (id :number): Promise<TaskDTO | undefined> => {
-        const tasks: TaskDTO = await prisma.task.findFirst({
+    public readonly findById = async (id :number): Promise<TaskDTO | undefined> => {
+        const tasks = await prisma.task.findFirst({
             where : {
                 id,
                 user_id : this.user_id
@@ -27,15 +27,15 @@ export default class TaskRepository{
         })
         if(!tasks) return
 
-        return tasks
+        return tasks 
     }
-    public readonly Create = async (task : CreateTaskDTO): Promise<TaskDTO> =>{
+    public readonly create = async (task : CreateTaskDTO): Promise<TaskDTO> =>{
         const newTask = await prisma.task.create({
             data: {...task}
         })
         return newTask
     }
-    public readonly Update = async (id : number , task : UpdateTaskDTO): Promise<void> =>{
+    public readonly update = async (id : number , task : UpdateTaskDTO): Promise<void> =>{
         await prisma.task.updateMany({
             where : {
                 id,
