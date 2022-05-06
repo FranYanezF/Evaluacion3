@@ -1,7 +1,10 @@
+import { TaskDTO } from "./TaskDTO"
+
 export interface BaseUserDTO {
     first_name: string
     last_name: string
     email : string 
+    task? : TaskDTO | null
 }
 
 export interface UserDTO extends BaseUserDTO {
